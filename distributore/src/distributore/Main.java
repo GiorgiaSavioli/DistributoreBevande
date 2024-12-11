@@ -6,24 +6,29 @@ import java.util.Arrays;
 
 public class Main {
 	
-	static Scanner s = new Scanner(System.in);
-	static int choice;
-
 	public static void main(String[] args) {
-		Products prod = new Products();
-		System.out.println("BENVENUTO!\nChe prodotto vuoi acquistare?: ");
-		prod.getProducts();
-		int choice = s.nextInt();
 		
+		Scanner s = new Scanner(System.in);
+		System.out.println("BENVENUTO! Che prodotto vuoi acquistare? ");
+		Products products = new Products();
+		products.addProductsToArray();
+		products.getProducts();
+		int choice = s.nextInt();
+
+		if (choice == 1) {
+			products.verifyProductAvailability(choice);
+		}
+		/*
 		while(true) {
 			
 			if(choice == 444) {
 				System.out.println("Scegli che azione vuoi svolgere: \n1. aggiunge\n2. rimuove \n3. cambia quantita\n4. cambia prezzo\n5. totale incasso\n6. Elenco acquistati\n0. Exit");
 			}
 			
+			
 		}
 		
-		
+		*/
 		
 
 
