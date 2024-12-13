@@ -1,0 +1,74 @@
+package distributore;
+
+public class Prodotto {
+	String nome; //variabili
+	int codice;
+	double prezzo;
+	int quantita;
+	boolean caldo;
+	//costruttore con 5 parametri
+	public Prodotto (String nome, int codice,double prezzo,int quantita,boolean caldo) {
+		this.nome=nome; //this.nome è il nome del prodotto  
+		this.codice=codice;
+		this.prezzo=prezzo;
+		this.caldo=caldo;
+		this.quantita=quantita;
+		
+	}
+	
+	
+	public String getNome() { // nel get come return si deve inserire il tipo di variabile ad esempio nome è una stringa
+		return nome;
+	}
+
+	public void setNome(String nome) {//vuole come parametro il nome 
+
+		this.nome = nome;
+	}
+	
+	public int getCodice() {
+		return codice;
+	}
+
+	public void setCodice(int codice) {
+
+		this.codice = codice;
+	}
+		
+	public double getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(double prezzo ) {
+
+		this.prezzo = prezzo;
+	}	
+	
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita ) {
+		if (quantita < 0) {
+	        System.out.println("Errore: la quantità non può essere negativa.");
+	    } else {
+	        this.quantita = quantita;
+	    }
+	}
+	
+		
+	public boolean getCaldo() {
+		return caldo;
+	}
+
+	public void setCaldo(boolean caldo) {
+
+		this.caldo = caldo;
+	}
+	@Override //sovrascrive il metodo toString
+	
+		public String toString () {
+			return "nome prodotto "+ nome +" codice "+ codice+ " € " +prezzo; 
+		}//return serve per stampare i dati del singolo prodotto
+
+}
