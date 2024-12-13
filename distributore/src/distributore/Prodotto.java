@@ -16,6 +16,10 @@ public class Prodotto {
 		
 	}
 	
+//	public Prodotto(String nome, int codice ) {
+//		
+//	}
+	
 	
 	public String getNome() { // nel get come return si deve inserire il tipo di variabile ad esempio nome è una stringa
 		return nome;

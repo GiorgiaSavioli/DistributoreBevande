@@ -1,5 +1,5 @@
 package distributore;
-
+/*
 public class Person extends Products{
 
 	
@@ -9,3 +9,4 @@ public class Person extends Products{
 	}
 	
 }
+*/
