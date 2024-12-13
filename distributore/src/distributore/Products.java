@@ -53,7 +53,6 @@ public class Products {
 	}
 	
 	
-	
 	static	Products soda = new Products("Soda", 1.50, 15);
 	static	Products juice = new Products("Juice", 2.00, 12);
 	static	Products water = new Products("Water", 1.00, 18);
