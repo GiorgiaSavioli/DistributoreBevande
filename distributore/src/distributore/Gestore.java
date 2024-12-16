@@ -45,12 +45,20 @@ public class Gestore {
 			// prodotti nel distributore
 			System.out.println("Non ci sono prodotti nel distributore.");
 		} else {// altrimenti si stampa la lista dei prodotti contenuti
-			System.out.println("\nElenco dei prodotti:");
+			System.out.println("\nElenco dei prodotti freddi:");
 			for (Prodotto p : distributore.getProdotti()) {
-				System.out.println(p);
+				if(!p.getCaldo())System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
 				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
 				// nel distributore
 			}
+			System.out.println("\nElenco dei prodotti caldi:");
+			
+			for (Prodotto p : distributore.getProdotti()) {
+				if(p.getCaldo())System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
+				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
+				// nel distributore
+			}
+			
 		}
 	}
 	

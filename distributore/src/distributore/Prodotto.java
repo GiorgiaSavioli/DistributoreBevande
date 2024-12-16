@@ -6,6 +6,7 @@ public class Prodotto {
 	double prezzo;
 	int quantita;
 	boolean caldo;
+	int unitaVenduti;
 	//costruttore con 5 parametri
 	public Prodotto (String nome, int codice,double prezzo,int quantita,boolean caldo) {
 		this.nome=nome; //this.nome è il nome del prodotto  
@@ -13,14 +14,12 @@ public class Prodotto {
 		this.prezzo=prezzo;
 		this.caldo=caldo;
 		this.quantita=quantita;
+		this.unitaVenduti = 0;
+		
 		
 	}
 	
-//	public Prodotto(String nome, int codice ) {
-//		
-//	}
-	
-	
+
 	public String getNome() { // nel get come return si deve inserire il tipo di variabile ad esempio nome è una stringa
 		return nome;
 	}
@@ -69,6 +68,8 @@ public class Prodotto {
 
 		this.caldo = caldo;
 	}
+	
+	
 	@Override //sovrascrive il metodo toString
 	
 		public String toString () {
