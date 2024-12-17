@@ -10,7 +10,7 @@ public class Prodotto {
 	//costruttore con 5 parametri
 	public Prodotto (String nome, int codice,double prezzo,int quantita,boolean caldo) {
 		this.nome=nome; //this.nome è il nome del prodotto  
-		this.codice=codice;
+	  	this.codice=codice;
 		this.prezzo=prezzo;
 		this.caldo=caldo;
 		this.quantita=quantita;

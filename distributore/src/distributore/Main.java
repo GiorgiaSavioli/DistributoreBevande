@@ -123,7 +123,7 @@ public class Main {
 						System.out.println("Quante ZOLLETTE di zucchero vuoi mettere?");
 						int zucchero = scan.nextInt();
 						if (zucchero > 3 || zucchero < 0)// min 0 e max3
-							zucchero = 3;
+ 							zucchero = 3;
 
 						if (distributore.getZucchero() >= zucchero) {
 

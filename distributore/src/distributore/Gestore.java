@@ -29,7 +29,7 @@ public class Gestore {
 			for (Prodotto p : distributore.getProdotti()) {
 				System.out.println(p.getCodice() + ". " + p.getNome() + " " + p.getPrezzo() + " €");
 				// si fa un for each per stampare tutto l elenco dei prodotti presenti nel
-				// distributore
+ 				// distributore
 			}
 
 		}

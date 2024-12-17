@@ -31,7 +31,7 @@ public class Distributore {
 
 		Gestore gestore = new Gestore(); // dichiaro il gestore
 		// mi creo la lista dei prodotti freddi e caldi e con i due for aggiungo al
-		// distrutore
+ 		// distrutore
 		String[][] beveragesCold = { { "Soda", "1.50" }, { "Juice", "2.00" }, { "Water", "1.00" },
 				{ "Iced Tea", "1.75" }, { "Lemonade", "2.25" }, { "Energy Drink", "3.00" }, { "Smoothie", "3.50" } };
 
