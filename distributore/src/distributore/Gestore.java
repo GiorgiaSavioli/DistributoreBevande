@@ -11,27 +11,10 @@ public class Gestore {
 		// controllo se è il prodotto inserito è caldo allora mi richiamo la classe
 		// ProdottoCaldo altrimenti freddo.
 		if (caldo) {
-			distributore.getProdotti().add(new ProdottoCaldo(nome, codice, prezzo, quantita, caldo));
+			distributore.getProdotti().add(new Prodotto(nome, codice, prezzo, quantita, true));
 		} else {
-			distributore.getProdotti().add(new ProdottoFreddo(nome, codice, prezzo, quantita, caldo));
+			distributore.getProdotti().add(new Prodotto(nome, codice, prezzo, quantita, false));
 
-		}
-
-	}
-	
-	public void visualizzaProdotti() {
-		if (distributore.getProdotti().isEmpty()) {// 
-			// controlla se la lista di prodotti  è vuota allora stampa un mexx che non ci sono
-			// prodotti nel distributore
-			System.out.println("Non ci sono prodotti nel distributore.");
-		} else {// altrimenti si stampa la lista dei prodotti contenuti
-			System.out.println("\nElenco dei prodotti:");
-			for (Prodotto p : distributore.getProdotti()) {
-			System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
-				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
-				// nel distributore
-			}
-			
 		}
 	}
 	

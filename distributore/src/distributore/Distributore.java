@@ -104,11 +104,27 @@ public class Distributore {
 		boolean venduto = false;
 		for (int i = 0; i < prodotti.size(); i++) {
 			if (prodotti.get(i).unitaVenduti > 0) {
-				System.out.println(prodotti.get(i).getNome()+" quantita venduto: " +prodotti.get(i).unitaVenduti);
+				System.out.println(prodotti.get(i).getNome()+" - unita vendute: " +prodotti.get(i).unitaVenduti);
 				venduto = true;
 			}
 		}
 		if(!venduto)System.out.println("Non e stato venduto nessun prodotto\n");
+	}
+	
+	
+	public void visualizzaProdotti() {
+		if (getProdotti().isEmpty()) {// 
+			// controlla se la lista di prodotti  è vuota allora stampa un mexx che non ci sono
+			// prodotti nel distributore
+			System.out.println("Non ci sono prodotti nel distributore.");
+		} else {// altrimenti si stampa la lista dei prodotti contenuti
+			System.out.println("\nElenco dei prodotti:");
+			for (Prodotto p : getProdotti()) {
+			System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €" );
+				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
+				// nel distributore
+			}
+		}
 	}
 	
 	private void setTotaleIncassi(double prezzoProdotto) {

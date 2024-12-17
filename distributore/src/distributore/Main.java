@@ -15,7 +15,7 @@ public class Main {
 		distributore.create();
 
 		while (true) {
-			gestore.visualizzaProdotti();
+			distributore.visualizzaProdotti();
 			System.out.println("\nInserisci il codice del prodotto che vuoi acquistare.");
 
 			int scelta = scan.nextInt();
@@ -29,7 +29,6 @@ public class Main {
 					int operazione = scan.nextInt();
 					switch (operazione) {
 					case 1:
-//						scan.nextLine();
 						System.out.println("Inserisci nome prodotto");
 						String nome = scan.next();
 
@@ -81,13 +80,14 @@ public class Main {
 						System.out.println();
 						break;
 					case 7:
-						gestore.visualizzaProdotti();
+						distributore.visualizzaProdotti();
 						System.out.println();
 						break;
 					case 0:
 						continua = false;
 						break;
 					default:
+						System.out.println("Azione errata, riprovare\n");
 						continue;
 					}
 				}
