@@ -1,33 +1,13 @@
 package distributore;
 
-import java.util.ArrayList;
-
 public class Gestore {
 
 	// mi creo la lista dei prodotti prodotto è l oggetto
 	
 	private Distributore distributore= new Distributore();
-//	
-//	private ArrayList<Prodotto>prodotti = distributore.getProdotti();
-
-	// il costruttore contiene la lista dei prodotti
-//	public Gestore() {
-//		distributore.getProdotti() = new ArrayList<>(); //
-//	}
 
 	// Metodo aggiungi che passa 5 paramentri
 	public void aggiungiProdotto(String nome, int codice, double prezzo, int quantita, boolean caldo) {
-		// prima di svolgere il for each controlla se il codice contenuto nella lista
-		// dei prodotti gia esistenti è uguale a quello inserito se gia è presente esce
-		// dal ciclo
-		// perche due prodotti non posso avere lo stesso codice (prodotto p corrisponde
-		// al singolo prodotto e il prodotto è quello che si sta inserendo)
-		for (Prodotto p : distributore.getProdotti()) {
-			if (p.getCodice() == (codice)) {
-				System.out.println("Errore: il codice prodotto è gia presente.");
-				return;
-			}
-		}
 		// controllo se è il prodotto inserito è caldo allora mi richiamo la classe
 		// ProdottoCaldo altrimenti freddo.
 		if (caldo) {
@@ -45,16 +25,9 @@ public class Gestore {
 			// prodotti nel distributore
 			System.out.println("Non ci sono prodotti nel distributore.");
 		} else {// altrimenti si stampa la lista dei prodotti contenuti
-			System.out.println("\nElenco dei prodotti freddi:");
+			System.out.println("\nElenco dei prodotti:");
 			for (Prodotto p : distributore.getProdotti()) {
-				if(!p.getCaldo())System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
-				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
-				// nel distributore
-			}
-			System.out.println("\nElenco dei prodotti caldi:");
-			
-			for (Prodotto p : distributore.getProdotti()) {
-				if(p.getCaldo())System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
+			System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €");
 				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
 				// nel distributore
 			}
@@ -81,7 +54,7 @@ public class Gestore {
 	        // Verifico se il codice del prodotto corrente(in base all indice) corrisponde al codice passato come parametro
 	        if (distributore.getProdotti().get(i).getCodice() == codice) { //richiama il prodotto in base all indice  e lo controlla con quello inserito nel parametro
 	            // Se trovato, aggiorno la quantità del prodotto
-	        	distributore.getProdotti().get(i).setQuantita(quantita); //richiama il prodotto in base all indice e a ggiorna la quantita
+	        	distributore.getProdotti().get(i).setQuantita(distributore.getProdotti().get(i).getQuantita()+quantita); //richiama il prodotto in base all indice e a ggiorna la quantita
 	     
 	            System.out.println("Quantità aggiornata per il prodotto con codice: " + codice);
 	            return; // Esco dal metodo dopo aver aggiornato

@@ -6,22 +6,45 @@ public class Distributore {
 
 	private double totaleIncassi;
 	private int zucchero;
-	private ArrayList<Prodotto> prodottiVenduti;
+	private int codiceID = 1;
 	private static ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>(); // lista dei prodotti che contiene il
 																				// distributore
+	
 
 	public Distributore() {
 		this.zucchero = 50;
 		this.totaleIncassi = 0;
-		this.prodottiVenduti = new ArrayList<Prodotto>();
 	}
 
 	public ArrayList<Prodotto> getProdotti() {
 		return prodotti;
 	}
 
-	public ArrayList<Prodotto> getProdottiVenduti() {
-		return prodottiVenduti;
+
+	public int getID() {
+		return codiceID;
+	}
+	
+	public int setID() {
+		return codiceID++;
+	}
+	
+	public void create() {
+		
+		Gestore gestore = new Gestore();
+		String[][] beveragesHot = { { "Soda", "1.50" }, { "Juice", "2.00" }, { "Water", "1.00" },
+				{ "Iced Tea", "1.75" }, { "Lemonade", "2.25" }, { "Energy Drink", "3.00" }, { "Smoothie", "3.50" } };
+
+		String[][] beveragesCold = { { "Coffee", "2.50" }, { "Hot Chocolate", "2.75" }, { "Tea", "1.25" } };
+
+		for (String[] beverage : beveragesHot) {
+			gestore.aggiungiProdotto(beverage[0], setID(), Double.parseDouble(beverage[1]),
+					((int) (Math.random() * 15 + 10)), false);
+		}
+		for (String[] beverage : beveragesCold) {
+			gestore.aggiungiProdotto(beverage[0], setID(), Double.parseDouble(beverage[1]),
+					((int) (Math.random() * 15 + 15)), true);
+		}
 	}
 
 	static boolean verificaDisponibilitaProdotto(int id) {
@@ -32,9 +55,7 @@ public class Distributore {
 
 			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getQuantita() > 0) {
 				disponibilita = true;
-
 			}
-
 		}
 		return disponibilita;
 	}
@@ -47,9 +68,7 @@ public class Distributore {
 
 			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getPrezzo() <= denaro) {
 				disponibilita = true;
-
 			}
-
 		}
 		return disponibilita;
 	}
@@ -77,14 +96,22 @@ public class Distributore {
 			if (prodotti.get(i).getCodice() == scelta) {
 				prodotti.get(i).unitaVenduti++;
 				setTotaleIncassi(prodotti.get(i).getPrezzo());
-
 			}
 
 		}
-		
+	}
+	public void mostraVenduti() {
+		boolean venduto = false;
+		for (int i = 0; i < prodotti.size(); i++) {
+			if (prodotti.get(i).unitaVenduti > 0) {
+				System.out.println(prodotti.get(i).getNome()+" quantita venduto: " +prodotti.get(i).unitaVenduti);
+				venduto = true;
+			}
+		}
+		if(!venduto)System.out.println("Non e stato venduto nessun prodotto\n");
 	}
 	
-	public void setTotaleIncassi(double prezzoProdotto) {
+	private void setTotaleIncassi(double prezzoProdotto) {
 		totaleIncassi+=prezzoProdotto;
 	}
 	

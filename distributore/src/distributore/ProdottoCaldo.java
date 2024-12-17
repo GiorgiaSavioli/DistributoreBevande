@@ -7,8 +7,4 @@ public class ProdottoCaldo  extends Prodotto{
 		super(nome, codice, prezzo, quantita, true);  //valore 
 		//super serve per richiamare la classe prodotto
 	}
-    public void isHot () { //metodo senza paramentri in ingresso che quando viene richiamato stampa il codice + il nome del prodotto
-    	System.out.println(codice+ " " + nome +": è stato riscaldato. " );
-    	
-    }
 }

@@ -16,10 +16,8 @@ public class Prodotto {
 		this.quantita=quantita;
 		this.unitaVenduti = 0;
 		
-		
 	}
 	
-
 	public String getNome() { // nel get come return si deve inserire il tipo di variabile ad esempio nome è una stringa
 		return nome;
 	}
@@ -69,11 +67,4 @@ public class Prodotto {
 		this.caldo = caldo;
 	}
 	
-	
-	@Override //sovrascrive il metodo toString
-	
-		public String toString () {
-			return "nome prodotto "+ nome +" codice "+ codice+ " € " +prezzo; 
-		}//return serve per stampare i dati del singolo prodotto
-
 }
