@@ -1,7 +1,7 @@
 package distributore;
 
 public class Prodotto {
-	String nome; //variabili
+	String nome; //attributi
 	int codice;
 	double prezzo;
 	int quantita;
@@ -48,7 +48,7 @@ public class Prodotto {
 	public int getQuantita() {
 		return quantita;
 	}
-
+// Metodoset in cui settiamo la quantita e controlliamo che sia maggiore di 0
 	public void setQuantita(int quantita ) {
 		if (quantita < 0) {
 	        System.out.println("Errore: la quantità non può essere negativa.");
