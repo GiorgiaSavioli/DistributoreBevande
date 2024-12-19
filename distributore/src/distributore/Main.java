@@ -3,8 +3,10 @@ package distributore;
 import java.util.Scanner;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
+		
+		
 
 		Scanner scan = new Scanner(System.in);
 		Distributore distributore = new Distributore();
@@ -15,7 +17,7 @@ public class Main {
 		distributore.create();
 
 		while (true) {
-			distributore.visualizzaProdotti();
+			distributore.visualizzaProdotti(false);
 			System.out.println("\nInserisci il codice del prodotto che vuoi acquistare.");
 
 			int scelta = scan.nextInt();
@@ -25,7 +27,7 @@ public class Main {
 				while (continua) {
 
 					System.out.println(
-							"1. Aggiungere prodotto\n2. Rimuovere prodotto \n3. Cambiare quantita prodotto esistente.\n4. Cambiare prezzo di un prodotto \n5. Totale incasso \n6. Quantità acquistati \n7. Visualizza elenco prodotti \n0. Esci dal programma");
+							"1. Aggiungere prodotto\n2. Rimuovere prodotto \n3. Cambiare quantita prodotto esistente.\n4. Cambiare prezzo di un prodotto \n5. Totale incasso \n6. Quantità acquistati \n7. Visualizza elenco prodotti \n8. Visualizza elenco esauriti \n9. Cambia prezzo di tutti i prodotti(es. -10 cambiera prezzo di tutti i prodotti di -10%)\n0. Esci dal menu gestore");
 					int operazione = scan.nextInt();
 					switch (operazione) {
 					case 1:
@@ -70,7 +72,7 @@ public class Main {
 						id = scan.nextInt();
 						System.out.println("Inserisci nuovo prezzo del prodotto");
 						double nuovoPrezzo = scan.nextDouble();
-						gestore.modificaPrezzo(nuovoPrezzo, id);
+						gestore.modificaPrezzo(nuovoPrezzo, id, false);
 						break;
 					case 5:
 						System.out.println("Incasso totale: " + distributore.getTotaleIncassi() + "€\n");
@@ -80,8 +82,15 @@ public class Main {
 						System.out.println();
 						break;
 					case 7:
-						distributore.visualizzaProdotti();
+						distributore.visualizzaProdotti(true);
 						System.out.println();
+						break;
+					case 8:
+						gestore.mostraEsauriti();
+						break;
+					case 9:
+						System.out.println("Inserisci la percentuale di aumento/decremento");
+						gestore.modificaPrezzo(scan.nextDouble(), 0, true);
 						break;
 					case 0:
 						continua = false;
@@ -106,14 +115,16 @@ public class Main {
 					if (distributore.verificaDisponibilitaProdotto(scelta)) {
 
 						System.out.println("Il prodotto è disponibile, inserisci denaro");
-						denaro += scan.nextDouble();
+						denaro = distributore.verificaInput(scan.nextDouble(), denaro);
+
 					}
 					while (!(distributore.verificaDenaro(scelta, denaro))) {
 
 						System.out.println("Hai inserito: " + denaro);
-
+						
 						System.out.println("Denaro insufficiente, inserire altro. ");
-						denaro += scan.nextDouble();
+
+						denaro = distributore.verificaInput(scan.nextDouble(), denaro);
 					}
 
 					double resto = distributore.verificaResto(distributore.getProdotto(scelta).getPrezzo(), denaro);
@@ -139,7 +150,6 @@ public class Main {
 					}
 					System.out.println("\nArrivederci!");
 					distributore.aggiornaQuantVenduta(scelta);
-
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 package distributore;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Distributore {
@@ -7,8 +8,7 @@ public class Distributore {
 	private double totaleIncassi;
 	private int zucchero;
 	private int codiceID = 1;
-	private static ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>(); // lista dei prodotti che contiene il
-																				// distributore
+	private static ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>(); 
 	
 
 	public Distributore() {
@@ -112,20 +112,24 @@ public class Distributore {
 	}
 	
 	
-	public void visualizzaProdotti() {
+	public void visualizzaProdotti(boolean gestore) {
 		if (getProdotti().isEmpty()) {// 
-			// controlla se la lista di prodotti  è vuota allora stampa un mexx che non ci sono
-			// prodotti nel distributore
 			System.out.println("Non ci sono prodotti nel distributore.");
-		} else {// altrimenti si stampa la lista dei prodotti contenuti
+		} else {
 			System.out.println("\nElenco dei prodotti:");
 			for (Prodotto p : getProdotti()) {
-			System.out.println(p.getCodice()+". "+p.getNome() +" " +p.getPrezzo()+" €" );
-				// e poi si fa un for each per stampare tutto l elenco dei prodotti presenti
-				// nel distributore
+				DecimalFormat df = new DecimalFormat("0.##"); 
+			System.out.println(p.getCodice()+". "+p.getNome() +" " +df.format(p.getPrezzo())+" €"+(gestore?" Quantita: "+p.getQuantita():""));
+
 			}
 		}
 	}
+	
+	public double verificaInput(double input, double denaro) {
+		if(input<=0)return denaro;
+		return denaro+input;
+	}
+
 	
 	private void setTotaleIncassi(double prezzoProdotto) {
 		totaleIncassi+=prezzoProdotto;
