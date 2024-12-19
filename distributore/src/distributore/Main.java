@@ -3,10 +3,8 @@ package distributore;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
-		
-		
 
 		Scanner scan = new Scanner(System.in);
 		Distributore distributore = new Distributore();
@@ -102,54 +100,69 @@ public class Main {
 				}
 
 			} else {
+				System.out.println("Inserisci quante unita di questo prodotto vuoi acquistare: ");
+				int unita = scan.nextInt();
 
 				if (scelta < 1 || scelta > distributore.getProdotti().size())
 					System.out.println("Codice errato, riprovare");
+				else if (unita <= 0)
+					System.out.println("Unita deve essere maggiore di 0");
 
 				else {
 					double denaro = 0;
+					boolean isAvailable = false;
 
-					System.out.println("Hai scelto " + distributore.getProdotto(scelta).getNome() + " il prezzo è di "
-							+ distributore.getProdotto(scelta).getPrezzo() + " €");
+					if (distributore.verificaDisponibilitaProdotto(scelta, unita)) {
 
-					if (distributore.verificaDisponibilitaProdotto(scelta)) {
+						System.out.println("Hai scelto " + distributore.getProdotto(scelta).getNome() + " Unita: "
+								+ unita + " Il prezzo totale e: " + distributore.getProdotto(scelta).getPrezzo() * unita
+								+ " €");
 
 						System.out.println("Il prodotto è disponibile, inserisci denaro");
 						denaro = distributore.verificaInput(scan.nextDouble(), denaro);
+						isAvailable = true;
 
 					}
-					while (!(distributore.verificaDenaro(scelta, denaro))) {
+
+					else {
+						System.out.println("Prodotto non disponibile");
+						continue;
+					}
+
+					while (!(distributore.verificaDenaro(scelta, denaro, unita))) {
 
 						System.out.println("Hai inserito: " + denaro);
-						
+
 						System.out.println("Denaro insufficiente, inserire altro. ");
 
 						denaro = distributore.verificaInput(scan.nextDouble(), denaro);
 					}
 
-					double resto = distributore.verificaResto(distributore.getProdotto(scelta).getPrezzo(), denaro);
+					double resto = distributore.verificaResto(distributore.getProdotto(scelta).getPrezzo() * unita,
+							denaro);
 
 					if (distributore.getProdotto(scelta).getCaldo()) {
-						System.out.println("Quante zollette di zucchero vuoi mettere?");
-						int zucchero = scan.nextInt();
-						if (zucchero > 3 || zucchero < 0)
-							zucchero = 3;
-						if (distributore.getZucchero() >= zucchero) {
-							distributore.setZucchero(distributore.getZucchero() - zucchero);
+						for (int i = 0; i < unita; i++) {
+							System.out.println("Quante zollette di zucchero vuoi mettere?");
+							int zucchero = scan.nextInt();
+							if (zucchero > 3 || zucchero < 0)
+								zucchero = 3;
+							if (distributore.getZucchero() >= zucchero) {
+								distributore.setZucchero(distributore.getZucchero() - zucchero);
+							}
+							System.err.println(
+									"Preparazione in corso.\nPreparazione in corso..\nPreparazione in corso...");
+							System.out.println("Preparazione completata! Erogazione in corso...\nRitirare il prodotto");
 						}
-						System.err.println("Preparazione in corso.\nPreparazione in corso..\nPreparazione in corso...");
-						System.out.println("Preparazione completata! Erogazione in corso...");
+					}
 
-					}
-					
 					if (resto > 0.0) {
-						System.out.println("Ritirare il prodotto");
-						System.out.println("Erogazione resto: " + resto + "€");
-					} else {
-						System.out.println("Ritirare il prodotto");
-					}
+						System.out.println(distributore.getProdotto(scelta).getCaldo()?"Erogazione resto: " + resto + "€":"Ritirare il prodotto\nErogazione resto: " + resto + "€");
+					} 
+					if(resto==0 &&!distributore.getProdotto(scelta).getCaldo())System.out.println("Ritirare il prodotto");
+
 					System.out.println("\nArrivederci!");
-					distributore.aggiornaQuantVenduta(scelta);
+					distributore.aggiornaQuantVenduta(scelta, unita);
 				}
 			}
 		}

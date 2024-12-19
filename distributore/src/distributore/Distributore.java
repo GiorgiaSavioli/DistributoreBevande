@@ -47,26 +47,26 @@ public class Distributore {
 		}
 	}
 
-	static boolean verificaDisponibilitaProdotto(int id) {
+	static boolean verificaDisponibilitaProdotto(int id, int unita) {
 
 		boolean disponibilita = false;
 
 		for (int i = 0; i < prodotti.size(); i++) {
 
-			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getQuantita() > 0) {
+			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getQuantita() >= unita) {
 				disponibilita = true;
 			}
 		}
 		return disponibilita;
 	}
 
-	static boolean verificaDenaro(int id, double denaro) {
+	static boolean verificaDenaro(int id, double denaro, int quant) {
 
 		boolean disponibilita = false;
 
 		for (int i = 0; i < prodotti.size(); i++) {
 
-			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getPrezzo() <= denaro) {
+			if (prodotti.get(i).getCodice() == id && prodotti.get(i).getPrezzo()*quant <= denaro && prodotti.get(i).getQuantita()>=quant) {
 				disponibilita = true;
 			}
 		}
@@ -89,13 +89,14 @@ public class Distributore {
 		return prodotti.get(a);
 	}
 	
-	public void aggiornaQuantVenduta(int scelta) {
+	public void aggiornaQuantVenduta(int scelta, int quant) {
 		
 		for (int i = 0; i < prodotti.size(); i++) {
 
 			if (prodotti.get(i).getCodice() == scelta) {
-				prodotti.get(i).unitaVenduti++;
-				setTotaleIncassi(prodotti.get(i).getPrezzo());
+				prodotti.get(i).unitaVenduti+=quant;
+				prodotti.get(i).quantita-=quant;
+				setTotaleIncassi(prodotti.get(i).getPrezzo()*quant);
 			}
 
 		}
